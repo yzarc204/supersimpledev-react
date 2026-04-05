@@ -3,12 +3,13 @@ import { products } from "../../starting-code/data/products";
 
 import "./HomePage.css";
 import CheckmarkImage from "../assets/icons/checkmark.png";
+import FavIcon from "../assets/images/home-favicon.png";
 
 export function HomePage() {
   return (
     <>
       <title>Ecommerce Project</title>
-      <link rel="icon" type="image/svg+xml" to="images/home-favicon.png" />
+      <link rel="icon" type="image/png" href={FavIcon} />
 
       <Header />
 

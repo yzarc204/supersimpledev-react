@@ -1,12 +1,13 @@
 import { CheckoutHeader } from "./CheckoutHeader";
 
 import "./CheckoutPage.css";
+import FavIcon from "../../assets/images/cart-favicon.png";
 
 export function CheckoutPage() {
   return (
     <>
       <title>Checkout</title>
-      <link rel="icon" type="image/svg+xml" to="images/cart-favicon.png" />
+      <link rel="icon" type="image/png" href={FavIcon} />
 
       <CheckoutHeader />
 

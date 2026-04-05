@@ -1,13 +1,16 @@
+import { Link } from "react-router";
+
 import { Header } from "../components/Header";
 
 import "./OrdersPage.css";
 import BuyAgainImage from "../assets/icons/buy-again.png";
+import FavIcon from "../assets/images/orders-favicon.png";
 
 export function OrdersPage() {
   return (
     <>
       <title>Orders</title>
-      <link rel="icon" type="image/svg+xml" to="images/orders-favicon.png" />
+      <link rel="icon" type="image/png" href={FavIcon} />
 
       <Header />
 
