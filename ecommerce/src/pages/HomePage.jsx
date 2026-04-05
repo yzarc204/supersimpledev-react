@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { Header } from "../components/Header";
 import { products } from "../../starting-code/data/products";
 
@@ -6,11 +8,7 @@ import CheckmarkImage from "../assets/icons/checkmark.png";
 import FavIcon from "../assets/images/home-favicon.png";
 
 export function HomePage() {
-  fetch("http://localhost:3000/api/products")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
+  axios.get();
 
   return (
     <>
@@ -18,8 +16,6 @@ export function HomePage() {
       <link rel="icon" type="image/png" href={FavIcon} />
 
       <Header />
-
-      {console.log(products)}
 
       <div className="home-page">
         <div className="products-grid">
