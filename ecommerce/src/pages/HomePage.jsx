@@ -1,14 +1,20 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 import { Header } from "../components/Header";
-import { products } from "../../starting-code/data/products";
 
 import "./HomePage.css";
 import CheckmarkImage from "../assets/icons/checkmark.png";
 import FavIcon from "../assets/images/home-favicon.png";
 
 export function HomePage() {
-  axios.get();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products").then((response) => {
+      setProducts(response.data);
+    });
+  }, []);
 
   return (
     <>
