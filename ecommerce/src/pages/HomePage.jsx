@@ -9,6 +9,7 @@ import FavIcon from "../assets/images/home-favicon.png";
 
 export function HomePage() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:3000/api/products").then((response) => {
