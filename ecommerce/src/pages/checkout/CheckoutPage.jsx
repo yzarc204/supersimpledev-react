@@ -29,64 +29,89 @@ export function CheckoutPage({ cart }) {
 
         <div className="checkout-grid">
           <div className="order-summary">
-            {cart.map((cartItem) => (
-              <div className="cart-item-container" key={cartItem.productId}>
-                <div className="delivery-date">
-                  Delivery date: Tuesday, June 21
-                </div>
+            {deliveryOptions.length > 0 &&
+              cart.map((cartItem) => {
+                const selectedDeliveryOption = deliveryOptions.find(
+                  (deliveryOption) => {
+                    return deliveryOption.id === cartItem.deliveryOptionId;
+                  },
+                );
 
-                <div className="cart-item-details-grid">
-                  <img className="product-image" src={cartItem.product.image} />
+                return (
+                  <div className="cart-item-container" key={cartItem.productId}>
+                    <div className="delivery-date">
+                      Delivery date:
+                      {dayjs(
+                        selectedDeliveryOption.estimatedDeliveryTimeMs,
+                      ).format("dddd, MMMM D")}
+                    </div>
 
-                  <div className="cart-item-details">
-                    <div className="product-name">{cartItem.product.name}</div>
-                    <div className="product-price">
-                      {formatMoney(cartItem.product.priceCents)}
-                    </div>
-                    <div className="product-quantity">
-                      <span>
-                        Quantity:{" "}
-                        <span className="quantity-label">
-                          {cartItem.quantity}
-                        </span>
-                      </span>
-                      <span className="update-quantity-link link-primary">
-                        Update
-                      </span>
-                      <span className="delete-quantity-link link-primary">
-                        Delete
-                      </span>
-                    </div>
-                  </div>
+                    <div className="cart-item-details-grid">
+                      <img
+                        className="product-image"
+                        src={cartItem.product.image}
+                      />
 
-                  <div className="delivery-options">
-                    <div className="delivery-options-title">
-                      Choose a delivery option:
-                    </div>
-                    {deliveryOptions.map((deliveryOption) => (
-                      <div className="delivery-option" key={deliveryOption.id}>
-                        <input
-                          type="radio"
-                          className="delivery-option-input"
-                          name={`delivery-option-${cartItem.productId}`}
-                          checked={true}
-                        />
-                        <div>
-                          <div className="delivery-option-date">
-                            {dayjs(
-                              deliveryOption.estimatedDeliveryTimeMs,
-                            ).format("MMMM D")}
-                          </div>
-                          <div className="delivery-option-price">
-                            FREE Shipping
-                          </div>
+                      <div className="cart-item-details">
+                        <div className="product-name">
+                          {cartItem.product.name}
+                        </div>
+                        <div className="product-price">
+                          {formatMoney(cartItem.product.priceCents)}
+                        </div>
+                        <div className="product-quantity">
+                          <span>
+                            Quantity:{" "}
+                            <span className="quantity-label">
+                              {cartItem.quantity}
+                            </span>
+                          </span>
+                          <span className="update-quantity-link link-primary">
+                            Update
+                          </span>
+                          <span className="delete-quantity-link link-primary">
+                            Delete
+                          </span>
                         </div>
                       </div>
-                    ))}
+
+                      <div className="delivery-options">
+                        <div className="delivery-options-title">
+                          Choose a delivery option:
+                        </div>
+                        {deliveryOptions.map((deliveryOption) => {
+                          return (
+                            <div
+                              className="delivery-option"
+                              key={deliveryOption.id}
+                            >
+                              <input
+                                type="radio"
+                                className="delivery-option-input"
+                                name={`delivery-option-${cartItem.productId}`}
+                                defaultChecked={
+                                  cartItem.deliveryOptionId ===
+                                  deliveryOption.id
+                                }
+                              />
+                              <div>
+                                <div className="delivery-option-date">
+                                  {dayjs(
+                                    deliveryOption.estimatedDeliveryTimeMs,
+                                  ).format("dddd, MMMM D")}
+                                </div>
+                                <div className="delivery-option-price">
+                                  FREE Shipping
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                );
+              })}
           </div>
 
           <div className="payment-summary">
