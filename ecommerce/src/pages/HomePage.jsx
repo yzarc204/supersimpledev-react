@@ -7,12 +7,11 @@ import "./HomePage.css";
 import CheckmarkImage from "../assets/icons/checkmark.png";
 import FavIcon from "../assets/images/home-favicon.png";
 
-export function HomePage() {
+export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/products").then((response) => {
+    axios.get("/api/products").then((response) => {
       setProducts(response.data);
     });
   }, []);
@@ -22,7 +21,7 @@ export function HomePage() {
       <title>Ecommerce Project</title>
       <link rel="icon" type="image/png" href={FavIcon} />
 
-      <Header />
+      <Header cart={cart} />
 
       <div className="home-page">
         <div className="products-grid">
