@@ -6,6 +6,12 @@ import CheckmarkImage from "../assets/icons/checkmark.png";
 import FavIcon from "../assets/images/home-favicon.png";
 
 export function HomePage() {
+  fetch("http://localhost:3000/api/products")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+
   return (
     <>
       <title>Ecommerce Project</title>
