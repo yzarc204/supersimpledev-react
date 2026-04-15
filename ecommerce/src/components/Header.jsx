@@ -1,15 +1,13 @@
 import { NavLink } from "react-router";
-import axios from "axios";
 
 import "./Header.css";
 import MobileLogoWhiteImage from "../assets/images/mobile-logo-white.png";
 import LogoWhiteImage from "../assets/images/logo-white.png";
 import SearchIconImage from "../assets/icons/search-icon.png";
 import CartIconImage from "../assets/icons/cart-icon.png";
+import { cartTotalQuantity } from "../utils/cart";
 
 export function Header({ cart }) {
-  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
-
   return (
     <>
       <div className="header">
@@ -35,7 +33,7 @@ export function Header({ cart }) {
 
           <NavLink to="/checkout" className="cart-link header-link">
             <img className="cart-icon" src={CartIconImage} />
-            <div className="cart-quantity">{totalQuantity}</div>
+            <div className="cart-quantity">{cartTotalQuantity(cart)}</div>
             <div className="cart-text">Cart</div>
           </NavLink>
         </div>

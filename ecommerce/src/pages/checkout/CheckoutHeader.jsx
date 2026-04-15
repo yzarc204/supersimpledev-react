@@ -4,8 +4,9 @@ import "./CheckoutHeader.css";
 import LogoImage from "../../assets/images/logo.png";
 import MobileLogoImage from "../../assets/images/mobile-logo.png";
 import CheckoutLockIconImage from "../../assets/icons/checkout-lock-icon.png";
+import { cartTotalQuantity } from "../../utils/cart";
 
-export function CheckoutHeader() {
+export function CheckoutHeader({ cart }) {
   return (
     <div className="checkout-header">
       <div className="header-content">
@@ -19,7 +20,7 @@ export function CheckoutHeader() {
         <div className="checkout-header-middle-section">
           Checkout (
           <Link to="/checkout" className="return-to-home-link">
-            3 items
+            {cartTotalQuantity(cart)} items
           </Link>
           )
         </div>
