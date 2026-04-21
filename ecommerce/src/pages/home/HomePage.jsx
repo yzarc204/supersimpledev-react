@@ -6,18 +6,23 @@ import { Header } from "../../components/Header";
 
 import "./HomePage.css";
 import FavIcon from "../../assets/images/home-favicon.png";
+import { useSearchParams } from "react-router";
 
 export function HomePage({ cart, loadCart }) {
+  const [searchParams] = useSearchParams();
+  const searchText = searchParams.get('search');
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const getHomeData = async () => {
-      const response = await axios.get("/api/products");
+      const endpoint = `/api/products${searchText ? `?search=${searchText}` : ''}`;
+      const response = await axios.get(endpoint);
       setProducts(response.data);
     };
 
     getHomeData();
-  }, []);
+  }, [searchText]);
 
   return (
     <>
